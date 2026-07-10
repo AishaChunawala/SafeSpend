@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light mode — soft pearl glass */
+    --background: 220 40% 97%;
+    --background-gradient-from: 225 45% 96%;
+    --background-gradient-to: 230 35% 93%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 222 47% 11%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 220 25% 95%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 220 20% 94%;
+    --muted-foreground: 220 10% 40%;
+    --accent: 222 47% 11%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 174 70% 45%;
+    --radius: 1rem;
+
+    /* SafeSpend brand — Aqua Teal */
+    --brand: 174 70% 45%;
+    --brand-foreground: 222 47% 11%;
+    --brand-soft: 174 70% 96%;
+    --brand-glow: 174 70% 55%;
+
+    /* Glass surfaces */
+    --glass-bg: 0 0% 100% / 0.65;
+    --glass-border: 0 0% 100% / 0.5;
+    --glass-blur: 16px;
+
+    /* Chart palette */
+    --chart-1: 174 70% 45%;
+    --chart-2: 210 80% 56%;
+    --chart-3: 38 92% 58%;
+    --chart-4: 280 65% 65%;
+    --chart-5: 340 75% 60%;
+    --chart-6: 150 55% 48%;
+  }
+
+  .dark {
+    /* Dark mode — deep navy → indigo */
+    --background: 224 47% 8%;
+    --background-gradient-from: 224 56% 11%;
+    --background-gradient-to: 230 50% 6%;
+    --foreground: 210 40% 96%;
+    --card: 224 40% 13%;
+    --card-foreground: 210 40% 96%;
+    --popover: 224 44% 12%;
+    --popover-foreground: 210 40% 96%;
+    --primary: 210 40% 96%;
+    --primary-foreground: 222 47% 11%;
+    --secondary: 224 30% 18%;
+    --secondary-foreground: 210 40% 96%;
+    --muted: 224 30% 18%;
+    --muted-foreground: 220 15% 65%;
+    --accent: 224 30% 18%;
+    --accent-foreground: 210 40% 96%;
+    --destructive: 0 72% 55%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 30% 22%;
+    --input: 220 30% 22%;
+    --ring: 174 70% 50%;
+
+    --brand: 174 70% 50%;
+    --brand-foreground: 222 47% 11%;
+    --brand-soft: 174 40% 18%;
+    --brand-glow: 174 80% 60%;
+
+    --glass-bg: 224 40% 14% / 0.55;
+    --glass-border: 0 0% 100% / 0.08;
+    --glass-blur: 20px;
+
+    --chart-1: 174 70% 50%;
+    --chart-2: 210 80% 60%;
+    --chart-3: 38 92% 60%;
+    --chart-4: 280 65% 68%;
+    --chart-5: 340 75% 62%;
+    --chart-6: 150 55% 52%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply text-foreground antialiased;
+    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: linear-gradient(
+      160deg,
+      hsl(var(--background-gradient-from)) 0%,
+      hsl(var(--background-gradient-to)) 100%
+    );
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  .glass {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border));
+  }
+
+  .glass-card {
+    background: hsl(var(--glass-bg));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border));
+    border-radius: var(--radius);
+    box-shadow:
+      0 4px 24px -8px hsl(222 47% 4% / 0.25),
+      0 1px 2px hsl(222 47% 4% / 0.1);
+  }
+
+  .glass-hover {
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+  }
+  .glass-hover:hover {
+    border-color: hsl(var(--brand) / 0.4);
+    box-shadow:
+      0 8px 32px -8px hsl(222 47% 4% / 0.35),
+      0 0 0 1px hsl(var(--brand) / 0.1);
+  }
+
+  .brand-text {
+    color: hsl(var(--brand));
+  }
+  .brand-bg {
+    background: hsl(var(--brand));
+  }
+  .brand-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--brand)) 0%,
+      hsl(var(--brand-glow)) 100%
+    );
+  }
+  .brand-glow {
+    box-shadow: 0 0 24px -4px hsl(var(--brand) / 0.5);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.3);
+    border-radius: 9999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
